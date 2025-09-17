@@ -1,108 +1,38 @@
 ﻿using System;
-using System.Text;
 using System.Windows;
-using System.Data.SQLite;
+using professional_ui.methods;
 
 namespace professional_ui
 {
     public partial class MainWindow : Window
     {
         public bool IsLoggedIn { get; private set; } = false;
-        private readonly string connectionString;
-        private readonly methods.DataBaseServices dbService = new methods.DataBaseServices();
+        private readonly DataBaseServices dbService = new DataBaseServices();
+        private Navigation navigator;
         private string currentUsername = "";
-
 
         public MainWindow()
         {
             InitializeComponent();
-            string dbPath = @"C:\Users\geoge\OneDrive\Desktop\dbs\new.db";
-            connectionString = $"Data Source={dbPath};Version=3;";
+            navigator = new Navigation(homeBorder, MainBorder2, MainBorder3, MainBorder4, loginBorder, unAutherisedBorder);
+            navigator.Navigate("login", IsLoggedIn);
         }
-        // navigation between pages 
-        private void homeBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsLoggedIn)
-            {
-                homeBorder.Visibility = Visibility.Visible;
-                MainBorder2.Visibility = Visibility.Hidden;
-                MainBorder3.Visibility = Visibility.Hidden;
-                MainBorder4.Visibility = Visibility.Hidden;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                unAutherisedBorder.Visibility = Visibility.Visible;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void page2Btn_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsLoggedIn)
-            {
-                homeBorder.Visibility = Visibility.Hidden;
-                MainBorder2.Visibility = Visibility.Visible;
-                MainBorder3.Visibility = Visibility.Hidden;
-                MainBorder4.Visibility = Visibility.Hidden;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                unAutherisedBorder.Visibility = Visibility.Visible;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-        }
-
-        private void page3Btn_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsLoggedIn)
-            {
-                homeBorder.Visibility = Visibility.Hidden;
-                MainBorder2.Visibility = Visibility.Hidden;
-                MainBorder3.Visibility = Visibility.Visible;
-                MainBorder4.Visibility = Visibility.Hidden;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                unAutherisedBorder.Visibility = Visibility.Visible;
-                loginBorder.Visibility = Visibility.Hidden;
-            }          
-        }
-
-        private void page4Btn_Click(object sender, RoutedEventArgs e)
-        {
-            if (IsLoggedIn)
-            {
-                homeBorder.Visibility = Visibility.Hidden;
-                MainBorder2.Visibility = Visibility.Hidden;
-                MainBorder3.Visibility = Visibility.Hidden;
-                MainBorder4.Visibility = Visibility.Visible;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-            else
-            {
-                unAutherisedBorder.Visibility = Visibility.Visible;
-                loginBorder.Visibility = Visibility.Hidden;
-            }
-        }
+        private void homeBtn_Click(object sender, RoutedEventArgs e) => navigator.Navigate("home", IsLoggedIn);
+        private void page2Btn_Click(object sender, RoutedEventArgs e) => navigator.Navigate("page2", IsLoggedIn);
+        private void page3Btn_Click(object sender, RoutedEventArgs e) => navigator.Navigate("page3", IsLoggedIn);
+        private void page4Btn_Click(object sender, RoutedEventArgs e) => navigator.Navigate("page4", IsLoggedIn);
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
             if (!IsLoggedIn)
             {
-                homeBorder.Visibility = Visibility.Hidden;
-                MainBorder2.Visibility = Visibility.Hidden;
-                MainBorder3.Visibility = Visibility.Hidden;
-                MainBorder4.Visibility = Visibility.Hidden;
-                loginBorder.Visibility = Visibility.Visible;
-                unAutherisedBorder.Visibility= Visibility.Hidden;
+                navigator.Navigate("login", IsLoggedIn);
             }
             else
             {
                 IsLoggedIn = false;
-                loginBtn_Click(sender, e);
+                currentUsername = "";
+                navigator.Navigate("login", IsLoggedIn);
             }
         }
         private void Login_Click(object sender, RoutedEventArgs e)
@@ -115,13 +45,18 @@ namespace professional_ui
                 txtUsername.Text = string.Empty;
                 txtPassword.Password = string.Empty;
                 IsLoggedIn = true;
-                homeBtn_Click(sender, e);
+                currentUsername = username;
+                navigator.Navigate("home", IsLoggedIn);
+                var userData = dbService.getDataByUsername(currentUsername);
+                if (userData.Count > 0)
+                {
+                    var user = userData[0];
+                }
             }
             else
             {
                 MessageBox.Show("Invalid username or password.");
             }
         }
-
     }
 }
