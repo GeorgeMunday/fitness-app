@@ -1,0 +1,113 @@
+﻿<Window x:Class="professional_ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="" Height="450" Width="800" 
+        Background="#F5F7FA">
+
+    <Grid>
+        <!-- Left Navigation Panel -->
+        <Border x:Name="LeftPanelBorder" Background="#2D3436" HorizontalAlignment="Left" Width="96" CornerRadius="20,20,20,20" Margin="10,10,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- App Logo -->
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,20,0,20">
+                    <Ellipse Width="60" Height="60" Fill="#74b9ff"/>
+                </StackPanel>
+
+                <!-- Navigation Buttons -->
+                <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Button x:Name="homeBtn" Width="90" Height="50" Click="homeBtn_Click" 
+                            Background="Transparent" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock Text="Home" FontSize="12" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button x:Name="page2Btn" Width="90" Height="50" Click="page2Btn_Click" 
+                            Background="Transparent" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <TextBlock Text="Page 2" FontSize="12"  Foreground="White" HorizontalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="page3Btn" Width="90" Height="50" Click="page3Btn_Click" 
+                            Background="Transparent" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <TextBlock Text="Page 3" FontSize="12"  Foreground="White" HorizontalAlignment="Center"/>
+                    </Button>
+
+                    <Button x:Name="page4Btn" Width="90" Height="50" Click="page4Btn_Click" 
+                            Background="Transparent" Foreground="White" BorderThickness="0" Cursor="Hand">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <TextBlock Text="Settings" FontSize="12" Foreground="White" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!-- Logout Button -->
+                <Button x:Name="loginBtn1" Grid.Row="2" Width="90" Height="50" Click="loginBtn_Click"
+                        Background="Transparent" Foreground="White" BorderThickness="0" Cursor="Hand" Margin="0,10,0,20">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                        <TextBlock Text="Logout" FontSize="12" Foreground="White" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Panels -->
+        <Border x:Name="homeBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+            <Label Content="Home" Margin="20" FontSize="18" FontWeight="Bold" Foreground="#2D3436"/>
+        </Border>
+
+        <Border x:Name="MainBorder2" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+            <TextBox Text="MainBorder2" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
+        </Border>
+
+        <Border x:Name="MainBorder3" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+            <TextBox Text="MainBorder3" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
+        </Border>
+
+        <Border x:Name="MainBorder4" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+            <TextBox Text="MainBorder4" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                     Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
+        </Border>
+
+        <!-- Login Panel -->
+        <Border x:Name="loginBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Visible">
+            <Grid Margin="20">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+                    <TextBlock Text="Login" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" TextAlignment="Center"/>
+                    <Separator Margin="0,0,0,20"/>
+                    <TextBlock Text="Username" Foreground="#636e72" FontSize="13"/>
+                    <TextBox x:Name="txtUsername" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
+                    <Separator Margin="0,0,0,10" Background="Transparent"/>
+                    <TextBlock Text="Password" Foreground="#636e72" FontSize="13"/>
+                    <PasswordBox x:Name="txtPassword" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
+                    <Separator Margin="0,0,0,10" Background="Transparent"/>
+                    <Button x:Name="Login" Content="Login" Width="150" Height="40"
+                            Background="#0984e3" Foreground="White" FontWeight="SemiBold"
+                            BorderThickness="0" Cursor="Hand"
+                            Click="Login_Click"/>
+                    <Separator Margin="0,0,0,10" Background="Transparent"/>
+                    <Separator Margin="0,0,0,20"/>
+                    <TextBlock Text="Forgot Password?" Foreground="#0984e3" FontSize="12" TextAlignment="Center" Cursor="Hand"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Unauthorized Panel -->
+        <Border x:Name="unAutherisedBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+            <Grid>
+                <TextBlock Text="You are not signed in?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Foreground="white"/>
+                <Separator Margin="0,0,0,20" Background="Transparent" />
+                <Button Content="Sign In" Width="100" Height="30" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,237,0,0"
+                    Background="#0984e3" Foreground="White" BorderThickness="0" Cursor="Hand"
+                    Click="loginBtn_Click" RenderTransformOrigin="0.512,1.394"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
