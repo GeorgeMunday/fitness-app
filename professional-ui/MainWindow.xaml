@@ -4,9 +4,13 @@
         Title="" Height="450" Width="800" 
         Background="#F5F7FA">
 
-    <Grid>
+    <Grid Background="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <!-- Left Navigation Panel -->
-        <Border x:Name="LeftPanelBorder" Background="#2D3436" HorizontalAlignment="Left" Width="96" CornerRadius="20,20,20,20" Margin="10,10,0,10">
+        <Border x:Name="LeftPanelBorder" Background="#2D3436" HorizontalAlignment="Left" Width="96" CornerRadius="20,20,20,20" Margin="10,10,0,10" Grid.RowSpan="2">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -57,27 +61,50 @@
         </Border>
 
         <!-- Main Content Panels -->
-        <Border x:Name="homeBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
-            <Label Content="Home" Margin="20" FontSize="18" FontWeight="Bold" Foreground="#2D3436"/>
+        <Border x:Name="homeBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Visible" Grid.RowSpan="2">
+            <Grid Margin="20">
+                <TextBlock Text="🏋️ My Fitness App"
+                   FontSize="24" FontWeight="Bold" 
+                   Foreground="White" 
+                   HorizontalAlignment="Center" 
+                   Margin="0,10,0,298"/>
+                <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="500">
+
+                    <TextBlock Text="Welcome to your fitness journey!"
+                       FontSize="20" FontWeight="SemiBold" 
+                       Foreground="White" 
+                       TextAlignment="Center" Height="43"/>
+
+                    <TextBlock Text="Track workouts, follow routines, and stay motivated."
+                       FontSize="14" Foreground="White"
+                       TextAlignment="Center" Margin="0,0,0,20" Height="25"/>
+                    <Button Content="Get Started"
+                    Background="#74b9ff" Foreground="White"
+                    Padding="15,5" FontSize="14"
+                    BorderThickness="0" Width="150" 
+                    Cursor="Hand"
+                            Click="loginBtn_Click"/>
+                </StackPanel>
+            </Grid>
         </Border>
 
-        <Border x:Name="MainBorder2" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+        <Border x:Name="MainBorder2" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden" Grid.RowSpan="2">
             <TextBox Text="MainBorder2" HorizontalAlignment="Center" VerticalAlignment="Center" 
                      Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
         </Border>
 
-        <Border x:Name="MainBorder3" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+        <Border x:Name="MainBorder3" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden" Grid.RowSpan="2">
             <TextBox Text="MainBorder3" HorizontalAlignment="Center" VerticalAlignment="Center" 
                      Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
         </Border>
 
-        <Border x:Name="MainBorder4" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+        <Border x:Name="MainBorder4" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden" Grid.RowSpan="2">
             <TextBox Text="MainBorder4" HorizontalAlignment="Center" VerticalAlignment="Center" 
                      Width="200" Height="35" BorderBrush="#b2bec3" BorderThickness="1" Padding="5"/>
         </Border>
 
         <!-- Login Panel -->
-        <Border x:Name="loginBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Visible">
+        <Border x:Name="loginBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden" Grid.RowSpan="2">
             <Grid Margin="20">
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
                     <TextBlock Text="Login" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" TextAlignment="Center"/>
@@ -100,7 +127,7 @@
         </Border>
 
         <!-- Unauthorized Panel -->
-        <Border x:Name="unAutherisedBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden">
+        <Border x:Name="unAutherisedBorder" Background="#2D3436" CornerRadius="12" Margin="120,10,10,10" Visibility="Hidden" Grid.RowSpan="2">
             <Grid>
                 <TextBlock Text="You are not signed in?" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Foreground="white"/>
                 <Separator Margin="0,0,0,20" Background="Transparent" />

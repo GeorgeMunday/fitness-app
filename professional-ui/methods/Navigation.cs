@@ -35,7 +35,7 @@ namespace professional_ui.methods
             {
                 case "home":
                     if (IsLoggedIn) homeBorder.Visibility = Visibility.Visible;
-                    else unAutherisedBorder.Visibility = Visibility.Visible;
+                    else homeBorder.Visibility = Visibility.Visible;
                     break;
 
                 case "page2":
